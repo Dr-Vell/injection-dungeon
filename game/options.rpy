@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "Injection Dungeon"
+define build.name = "Injection_Dungeon"
 
 
 ## Sounds and music ############################################################
@@ -182,6 +182,12 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    
+
+    #Uncomment to not include the Animalese and pydub folder contents in web builds
+    #build.classify("pydub/**","None")
+    #build.classify("speak.rpy","None")
+    
 
     ## To archive files, classify them as 'archive'.
 

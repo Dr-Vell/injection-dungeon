@@ -1,37 +1,10 @@
 ﻿# The script of the game goes in this file.
 
-# VOICES
-init python:
-
-    #Generate seperate audio channel from voice for beeps.
-    renpy.music.register_channel(name='beeps', mixer='voice')
-
-    #Character callback that generates the sound.
-    def nico_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "nico")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-    def laila_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "laila")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-    def enemy_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "enemy")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-
-
 # CHARACTERS
 define m = Character("Me")
-define n = Character("Nico", callback=nico_voice)
-define l = Character("Laila", callback=laila_voice)
-define e = Character("???", callback=enemy_voice)
+define n = Character("Nico")
+define l = Character("Laila")
+define e = Character("???")
 define b1 = Character("Injection Basics", kind=nvl)
 define b2 = Character("Description", kind=nvl)
 define b2_5 = Character("Types", kind=nvl)
@@ -452,7 +425,7 @@ label read_book:
     menu:
         "Read it?"
         "Sure, any help is welcomed!":
-            call guide_book
+            call guide_book from _call_guide_book
 
             m "Okay, I'm done with this."
 
@@ -656,7 +629,7 @@ label first_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_1
 
             m "Okay, now I should be able to answer."
             jump first_question_0
@@ -706,7 +679,7 @@ label second_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_2
 
             m "Okay, now I should be able to answer."
             jump second_question_0
@@ -763,7 +736,7 @@ label third_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
             
-            call guide_book
+            call guide_book from _call_guide_book_3
 
             m "Okay, now I should be able to answer."
             jump third_question_0
@@ -941,7 +914,7 @@ label first_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_4
 
             m "Okay, now I should be able to answer."
             jump first_question_1
@@ -975,7 +948,7 @@ label second_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_5
 
             m "Okay, now I should be able to answer."
             jump second_question_1
@@ -1005,7 +978,7 @@ label third_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_6
 
             m "Okay, now I should be able to answer."
             jump third_question_1
@@ -1036,7 +1009,7 @@ label fourth_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_7
 
             m "Okay, now I should be able to answer."
             jump fourth_question_1
@@ -1063,7 +1036,7 @@ label fifth_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_8
 
             m "Okay, now I should be able to answer."
             jump fifth_question_1
@@ -1188,7 +1161,7 @@ label first_question_2:
             n "Easy peasy."
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_9
             m "Okay, now I should be able to answer."
             jump first_question_2
 
@@ -1211,7 +1184,7 @@ label second_question_2:
             n "Roger."
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_10
             m "Okay, now I should be able to answer."
             jump second_question_2
 
@@ -1233,7 +1206,7 @@ label third_question_2:
             n "Okay, here we go!"
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_11
             m "Okay, now I should be able to answer."
             jump third_question_2
 
@@ -1413,7 +1386,7 @@ label good_ending:
 
     d "The WEBSEC TEAM."
 
-    "{b}Good ending{/b}"
+    "{b}Good ending{/b}."
 
 
     return
