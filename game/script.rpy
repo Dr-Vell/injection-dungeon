@@ -452,7 +452,7 @@ label read_book:
     menu:
         "Read it?"
         "Sure, any help is welcomed!":
-            call guide_book
+            call guide_book from _call_guide_book
 
             m "Okay, I'm done with this."
 
@@ -656,7 +656,7 @@ label first_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_1
 
             m "Okay, now I should be able to answer."
             jump first_question_0
@@ -706,7 +706,7 @@ label second_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_2
 
             m "Okay, now I should be able to answer."
             jump second_question_0
@@ -763,7 +763,7 @@ label third_question_0:
         "<Help> Read book":
             m "The book should be able to help me with this..."
             
-            call guide_book
+            call guide_book from _call_guide_book_3
 
             m "Okay, now I should be able to answer."
             jump third_question_0
@@ -941,7 +941,7 @@ label first_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_4
 
             m "Okay, now I should be able to answer."
             jump first_question_1
@@ -975,7 +975,7 @@ label second_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_5
 
             m "Okay, now I should be able to answer."
             jump second_question_1
@@ -1005,7 +1005,7 @@ label third_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_6
 
             m "Okay, now I should be able to answer."
             jump third_question_1
@@ -1036,7 +1036,7 @@ label fourth_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_7
 
             m "Okay, now I should be able to answer."
             jump fourth_question_1
@@ -1063,7 +1063,7 @@ label fifth_question_1:
         "<Help> Read book":
             m "The book should be able to help me with this..."
 
-            call guide_book
+            call guide_book from _call_guide_book_8
 
             m "Okay, now I should be able to answer."
             jump fifth_question_1
@@ -1188,7 +1188,7 @@ label first_question_2:
             n "Easy peasy."
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_9
             m "Okay, now I should be able to answer."
             jump first_question_2
 
@@ -1211,7 +1211,7 @@ label second_question_2:
             n "Roger."
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_10
             m "Okay, now I should be able to answer."
             jump second_question_2
 
@@ -1233,7 +1233,7 @@ label third_question_2:
             n "Okay, here we go!"
         "<Help> Read book":
             m "The book should be able to help me with this..."
-            call guide_book
+            call guide_book from _call_guide_book_11
             m "Okay, now I should be able to answer."
             jump third_question_2
 
@@ -1413,7 +1413,7 @@ label good_ending:
 
     d "The WEBSEC TEAM."
 
-    "{b}Good ending{/b}"
+    "{b}Good ending{/b}."
 
 
     return
