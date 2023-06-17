@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 127, in script
+    db2 "'Description' should be displayed"
+Exception: Sayer 'db2' is not defined.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 127, in script
+    db2 "'Description' should be displayed"
+  File "renpy/ast.py", line 881, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "renpy/ast.py", line 774, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'db2' is not defined.
+
+Windows-10-10.0.19041 AMD64
+Ren'Py 7.5.3.22090809
+Injection Dungeon 1.0
+Sat Jun 17 13:49:23 2023

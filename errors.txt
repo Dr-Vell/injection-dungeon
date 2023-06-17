@@ -1,0 +1,42 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 124: end of line expected.
+    l "'Laila' should be displayed"= Character("Laila")
+                                   ^
+
+File "game/script.rpy", line 125: end of line expected.
+    e "'???' should be displayed"= Character("???")
+                                 ^
+
+File "game/script.rpy", line 126: end of line expected.
+    b1 "'Injection Basics' should be displayed"= Character("Injection Basics", kind=nvl)
+                                               ^
+
+File "game/script.rpy", line 127: end of line expected.
+    db2 "'Description' should be displayed"= Character("Description", kind=nvl)
+                                           ^
+
+File "game/script.rpy", line 128: end of line expected.
+    b2_5 "'Types' should be displayed"= Character("Types", kind=nvl)
+                                      ^
+
+File "game/script.rpy", line 129: end of line expected.
+    b3 "'Examples' should be displayed"= Character("Examples", kind=nvl)
+                                       ^
+
+File "game/script.rpy", line 130: end of line expected.
+    b4 "'Protection' should be displayed"= Character("Protection ", kind=nvl)
+                                         ^
+
+File "game/script.rpy", line 131: end of line expected.
+    b5 "Nothing should be displayed as Name"= Character(" ", kind=nvl)
+                                            ^
+
+File "game/script.rpy", line 132: end of line expected.
+    d "Nothing should be displayed as Name"= Character(" ", kind=nvl)       
+                                           ^
+
+Ren'Py Version: Ren'Py 7.5.3.22090809
+Sat Jun 17 13:48:15 2023

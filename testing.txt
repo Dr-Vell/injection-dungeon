@@ -1,0 +1,13 @@
+Testing Mode Results
+
+
+> Testing Initial Flag Values:
+
+Testing Mode Results:
+ - ready: True
+ - fork: True
+ - puzzle: True
+ - def_1: True
+ - def_2: True
+ - def_3: True
+ - trials_done: True

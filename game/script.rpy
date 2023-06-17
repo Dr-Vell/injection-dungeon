@@ -1,37 +1,10 @@
 ﻿# The script of the game goes in this file.
 
-# VOICES
-init python:
-
-    #Generate seperate audio channel from voice for beeps.
-    renpy.music.register_channel(name='beeps', mixer='voice')
-
-    #Character callback that generates the sound.
-    def nico_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "nico")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-    def laila_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "laila")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-    def enemy_voice(event, **kwargs):
-        if event == "show": #When the text is shown
-            build_sentence(_last_say_what, "enemy")
-            renpy.sound.play("audio/output.wav", channel="beeps", loop=True)
-        elif event == "slow_done" or event == "end": #When the text is finished displaying or you open a menu.
-            renpy.sound.stop(channel="beeps")
-
-
 # CHARACTERS
 define m = Character("Me")
-define n = Character("Nico", callback=nico_voice)
-define l = Character("Laila", callback=laila_voice)
-define e = Character("???", callback=enemy_voice)
+define n = Character("Nico")
+define l = Character("Laila")
+define e = Character("???")
 define b1 = Character("Injection Basics", kind=nvl)
 define b2 = Character("Description", kind=nvl)
 define b2_5 = Character("Types", kind=nvl)
@@ -62,13 +35,129 @@ define def_1 = True
 define def_2 = True
 define def_3 = True
 define trials_done = 0
+define test_mode = True
+define GUI_demo_mode = True
 
 label start:
+
+#################################################################     TESTING AREA     ###################################################################
+    
+    if GUI_demo_mode == True:
+        call demo
+
+    
+    if test_mode == True:
+        scene bg black
+        with fade   
+
+        "Click to run all automatic tests."
+
+        python:
+            test_file = open("C:/Users/david/Desktop/Asignaturas/TFG/Juegos/Injection Dungeon/testing.txt", 'w')
+
+            test_file.write("Testing Mode Results\n\n\n")
+            test_file.write("> Testing Initial Flag Values:\n\n")
+            test_file.write("Testing Mode Results:\n")
+            test_file.write(" - ready: " + str(ready == True)+ "\n")
+            test_file.write(" - fork: " + str(fork == "None")+ "\n")
+            test_file.write(" - puzzle: " + str(puzzle == True)+ "\n")
+            test_file.write(" - def_1: " + str(def_1 == True)+ "\n")
+            test_file.write(" - def_2: " + str(def_2 == True)+ "\n")
+            test_file.write(" - def_3: " + str(def_3 == True)+ "\n")
+            test_file.write(" - trials_done: " + str(trials_done == 0)+ "\n")
+
+        "Testing completed. Click again to start manual tests."
+        "Test 1: Ready Choice."
+        call test_1
+        
+        scene bg black
+        with fade   
+        "Test 2: Read book."
+        call read_book
+
+        scene bg black
+        with fade   
+        "Test 3: Stairs or Dark Corridor."
+        call test_2
+
+        scene bg black
+        with fade   
+        "Test 4: First Challenge"
+        call first_question_0
+        
+        scene bg black
+        with fade   
+        "Test 5: Fork Choice"
+        call test_3
+
+        scene bg black
+        with fade   
+        "Test 6: Second Challenge"
+        call first_question_1
+
+        scene bg black
+        with fade   
+        "Test 7: Third Challenge"
+        call first_question_2
+
+        scene bg black
+        with fade     
+        "Testing completed. Click again to start audio tests."
+
+        "First let's test the music."
+        play music gamemusic
+        "Playing: 'gamemusic'"
+        play music market_noise
+        "Playing: 'market_noise'"
+        play music dungeon_air
+        "Playing: 'dungeon_air'"
+        play music combat
+        "Playing: 'combat'"
+        play music good_ending
+        "Playing: 'good_ending'"
+
+
+        stop music
+        "Now let's test the sound effects."
+        play sound grrr        
+        "Playing: 'grr'"
+        play sound door
+        "Playing: 'door'"
+        play sound correct
+        "Playing: 'correct'"
+        play sound incorrect
+        "Playing: 'incorrect'"
+        play sound orc_ending
+        "Playing: 'orc_ending'"
+        play sound poison_leak
+        "Playing: 'poison_leak'"
+        play sound horde
+        "Playing: 'horde'"
+
+        "Testing completed. Click again to start characters test."
+
+        m "This is you, 'Me' should be displayed"
+        n "'Nico' should be displayed"
+        l "'Laila' should be displayed"
+        e "'???' should be displayed"
+        b1 "'Injection Basics' should be displayed"
+        b2 "'Description' should be displayed"
+        b2_5 "'Types' should be displayed"
+        b3 "'Examples' should be displayed"
+        b4 "'Protection' should be displayed"
+        b5 "Nothing should be displayed as Name"
+        d "Nothing should be displayed as Name"     
+        
+        
+        "Testing completed. Click again to exit."
+
+        return
 
 ##################################################################     GAME INTRO      ###################################################################
 
 ##################### Intro
 
+label start_game:
 
     play music gamemusic
 
@@ -159,6 +248,8 @@ label start:
     n "She should be waiting for us by the market."
     n "Ready to go?"
 
+label test_1:
+
     menu:
 
         "Ready to go?"
@@ -166,6 +257,8 @@ label start:
         "Yeah, let's waste no more time":
             show nico happy
             n "Let's go."
+            if test_mode == True:
+                return
             jump market_section
 
         "Wait a second, I can't find my sword...":
@@ -173,7 +266,10 @@ label start:
             show nico angry
             n "Oh come on! Forget it and let's go!"
             m "Okay fine."
+            if test_mode == True:
+                return
             jump market_section
+
 
 
 ##################### Market
@@ -472,6 +568,9 @@ label read_book:
 
             n "Finally, took you long enough..."
 
+            if test_mode == True:
+                return
+
             jump fork_0
 
         "Nah, I'm fine thanks.":
@@ -484,6 +583,9 @@ label read_book:
             with dissolve
 
             n "Me neither so...let's get going!"
+
+            if test_mode == True:
+                return
 
             jump fork_0
 
@@ -501,6 +603,8 @@ label fork_0:
 
     n "This corridor splits in two paths..."
     n "Which way now?"
+
+label test_2:
     menu:
         "Which way will you take?"
 
@@ -508,12 +612,16 @@ label fork_0:
             m "These shining stairs inspire confidence, let's go that way."
             show nico smile
             n "Right on!"
+            if test_mode == True:
+                return
             jump final_door_0
 
         "The dark corridor":
             m "Let's take the dark path...shining stuff must be some trap...right?"
             show nico equisde 
             n "...okay? I'll trust you on this."
+            if test_mode == True:
+                return
             jump phase_1
 
 
@@ -768,7 +876,9 @@ label third_question_0:
             m "Okay, now I should be able to answer."
             jump third_question_0
 
-    
+    if test_mode == True:
+        return
+
     play sound door
     pause 3.0
 
@@ -824,6 +934,9 @@ label fork_1:
     n "This corridor splits in two paths..."
     n "The left corridor says \"Attack\" and the right corridor says \"Defend\"."
     n "Which way now?"
+
+label test_3:
+
     menu:
         "Which way will you take?"
 
@@ -832,6 +945,8 @@ label fork_1:
             show nico smile
             n "Right on!"
             $ fork = "Attack"
+            if test_mode == True:
+                return
             jump phase_2
 
         "Right":
@@ -839,6 +954,8 @@ label fork_1:
             show nico smile 
             n "Right on!"
             $ fork = "Defend"
+            if test_mode == True:
+                return
             jump phase_3
 
 
@@ -1059,6 +1176,8 @@ label fifth_question_1:
             play sound correct
             m "Great! We are saved!"
             m "While SQL injection attacks were initially aimed at relational databases, it is also possible to perform similar attacks on non-relational databases and other data storage technologies."
+            if test_mode == True:
+                return
             jump phase_2_ending
         "<Help> Read book":
             m "The book should be able to help me with this..."
@@ -1297,6 +1416,8 @@ label resolve_trial:
     "You grab the key fragment and return to where you came from."
 
     $ trials_done = trials_done + 1
+    if test_mode == True:
+        return
     jump back_to_split
 
 label key_forgery:
